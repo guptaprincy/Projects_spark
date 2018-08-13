@@ -1,0 +1,15 @@
+/*data frame example*/
+/*abc.txt with student-rollno,name,percentage */
+scala> import org.apache.spark.sql.SQLContext
+scala> val sqlcontext=new SQLContext(sc)
+scala> val df=spark.read.format("CSV").option("path","hdfs://BDTEST2/user/hive/warehouse/test_1.db/abc.txt").load()
+scala> df.registerTempTable("abc")
+scala> sqlcontext.sql("select count(*) from abc")
+count(1)
+-------
+6
+
+/* now u can run any SQL query by using above format */
+
+
+
